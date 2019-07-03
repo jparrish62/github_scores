@@ -10,7 +10,7 @@ module PullRequest
     end
 
     def initialize
-      uri = URI.parse("https://api.github.com/")
+      uri = URI.parse("https://api.github.com/repos/jparrish62/github_scores/pulls/10/pull_request")
       http = NET::HTTP.new(uri.host, uri.port)
       http.use_ssl = (uri.scheme == 'https')
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -20,10 +20,25 @@ module PullRequest
     end
 
     def call
-      response
+      set_data
+      Score::DeveloperScore.call(login)
+    end
+
+    def set_data
+      response.each do |res|
+        PullRequest.set_data(developer, res.body, res.pull_request_url)
+      end
     end
 
     private
     attr_reader :response
+
+    def developer
+      Developer.find_developer(login)
+    end
+
+    def login
+      response.first.user['login']
+    end
   end
 end
