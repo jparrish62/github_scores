@@ -24,4 +24,8 @@ class Developer < ApplicationRecord
   def self.find_number_of_reviews(developer)
     PullRequestReview.find_number_of_reviews(developer)
   end
+
+  def self.find_dev_by_id(id)
+    Developer.fin_by_id(id)
+  end
 end
