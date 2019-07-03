@@ -10,7 +10,7 @@ module PullRequestReview
     end
 
     def initialize
-      uri = URI.parse("https://api.github.com/")
+      uri = URI.parse("https://api.github.com/github_scores/jparrish62/pulls/reviews")
       http = NET::HTTP.new(uri.host, uri.port)
       http.use_ssl = (uri.scheme == 'https')
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
