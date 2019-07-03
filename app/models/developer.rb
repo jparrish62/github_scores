@@ -10,9 +10,9 @@ class Developer < ApplicationRecord
 
   def self.set_developer_score(login)
     dev = Developer.find_by_first_name(login)
-    comments = Developer.find_number_of_comments
-    request  = Developer.find_number_of_request * 12
-    reviews  = Developer.find_number_of_reviews * 3
+    comments = Developer.find_number_of_comments(login)
+    request  = Developer.find_number_of_request(login) * 12
+    reviews  = Developer.find_number_of_reviews(login) * 3
     dev.total_score = comments + request + reviews
     dev.save!
   end
@@ -30,6 +30,6 @@ class Developer < ApplicationRecord
   end
 
   def self.find_dev_by_id(id)
-    Developer.fin_by_id(id)
+    Developer.find_by_id(id)
   end
 end
