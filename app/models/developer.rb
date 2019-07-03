@@ -1,4 +1,8 @@
 class Developer < ApplicationRecord
+  has_many :pull_request_comments
+  has_many :pull_request_reviews
+  has_many :pull_requests
+
 
   def self.find_developer(developer)
     Developer.find_by_first_name(developer)
