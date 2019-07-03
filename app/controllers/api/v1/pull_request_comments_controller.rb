@@ -1,0 +1,2 @@
+class PullRequestCommentsController < ApplicationController
+end
