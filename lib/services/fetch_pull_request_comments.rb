@@ -20,10 +20,25 @@ module PullRequestComment
     end
 
     def call
-      response
+      set_data
+      Score::DeveloperScore.call(login)
+    end
+
+    def set_data
+      response.each do |res|
+        PullRequestComment.set_data(developer, res.body, res.pull_request_url)
+      end
     end
 
     private
     attr_reader :response
+
+    def developer
+      Developer.find_developer(login)
+    end
+
+    def login
+      response.first.user['login']
+    end
   end
 end
