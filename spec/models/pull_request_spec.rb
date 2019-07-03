@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe PullRequest, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe ".set_data" do
+    it "sets pull request data" do
+      PullRequest.set_data("John", "Good job", "this_is_a_url_string")
+      comment = PullRequest.find_by_user("John")
+      expect(comment.body).to eq "Good job"
+    end
+  end
 end
