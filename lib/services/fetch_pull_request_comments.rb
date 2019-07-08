@@ -10,7 +10,7 @@ module PullRequestComment
     end
 
     def initialize
-      uri = URI.parse("https://api.github.com/github_scores/jparrish62/pulls/comments")
+      uri = URI.parse("https://api.github.com/repos/jparrish62/github_scores/pulls/3/comments")
       http = NET::HTTP.new(uri.host, uri.port)
       http.use_ssl = (uri.scheme == 'https')
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
