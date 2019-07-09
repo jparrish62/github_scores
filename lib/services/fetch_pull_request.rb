@@ -10,7 +10,7 @@ module PullRequest
     end
 
     def initialize
-      uri = URI.parse("https://api.github.com/repos/jparrish62/github_scores/pulls/10/pull_request")
+      uri = URI.parse("https://api.github.com/repos/jparrish62/github_scores/pulls/3/requested_reviewers")
       http = NET::HTTP.new(uri.host, uri.port)
       http.use_ssl = (uri.scheme == 'https')
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
